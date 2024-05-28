@@ -69,10 +69,10 @@ public class Product {
     }
 
     public void setStock(int stock){
-        this.stock = stock;
+        this.stock = stock; 
     }
 
-    public void setPrice(){
+    public void setPrice(double price){
         this.price = price;
     }
 }
