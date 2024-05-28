@@ -4,8 +4,13 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+
+import java.util.Set;
+
+import com.jjgr.store_demo.cart.Cart;
 
 @Entity
 @Table
@@ -26,9 +31,12 @@ public class Product {
     private int stock;
     private double price;
 
+    @ManyToMany(mappedBy = "products")
+    private Set<Cart> carts;
+
+    //Constructors
     public Product(){}
 
-    //Cinstructors
     public Product(Long id, String name, int stock, double price){
         this.id = id;
         this.name = name;
@@ -59,6 +67,10 @@ public class Product {
         return price;
     }
 
+    public Set<Cart> getCarts(){
+        return carts;
+    }
+
     //Setters
     public void setId(Long id){
         this.id = id;
@@ -74,5 +86,9 @@ public class Product {
 
     public void setPrice(double price){
         this.price = price;
+    }
+
+    public void setCarts(Set<Cart> carts){
+        this.carts = carts;
     }
 }
