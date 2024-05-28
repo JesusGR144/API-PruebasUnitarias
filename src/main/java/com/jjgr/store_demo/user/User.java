@@ -52,15 +52,15 @@ public class User {
     }
 
     // Setters
-    void setId(Long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    void setName(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
-    void setEmail(String email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 }

@@ -21,7 +21,7 @@ public class UserController {
     }
 
     @GetMapping("getAll")
-    public List<User> getMethodName() {
+    public List<User> getAll() {
         return userService.getUsers();
     }
 
@@ -31,8 +31,8 @@ public class UserController {
     }
 
     @DeleteMapping(path="{userId}")
-    public void deleteUser(@PathVariable("userId") Long iserId){
+    public void deleteUser(@PathVariable("userId") Long userId){
         // userService.deleteUser();
-        userService.deleteUser(iserId);
+        userService.deleteUser(userId);
     }
 }
