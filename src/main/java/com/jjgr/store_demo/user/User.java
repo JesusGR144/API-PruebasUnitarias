@@ -21,7 +21,8 @@ public class User {
         generator = "user_sequence"
     )    
     private Long id;
-    private String name, email;
+    private String name;
+    private String email;
 
     // Constructors
     public User() {
