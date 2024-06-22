@@ -1,5 +1,7 @@
 package com.jjgr.store_demo.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -9,6 +11,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "users")
+@JsonIgnoreProperties("carts") // Ignora la propiedad carts en la serialización JSON
 public class User {
     @Id    
     @SequenceGenerator(

@@ -10,10 +10,12 @@ import jakarta.persistence.Table;
 
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.jjgr.store_demo.cart.Cart;
 
 @Entity
 @Table
+@JsonIgnoreProperties("carts") // Ignora la propiedad carts en la serialización JSON
 public class Product {
     @Id
     @SequenceGenerator(
