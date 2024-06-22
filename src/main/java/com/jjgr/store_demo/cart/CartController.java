@@ -2,6 +2,7 @@ package com.jjgr.store_demo.cart;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,18 +22,34 @@ public class CartController {
         this.cartService = cartService;
     }
 
+    // @GetMapping("getAll")
+    // public List<Cart> getAll(){
+    //     return cartService.getCarts();
+    // }
+
+    // @PostMapping("addCart")
+    // public void addCart(@RequestBody Cart cart){
+    //     cartService.addCart(cart);
+    // }
+
+    // @DeleteMapping(path = "{cartId}")
+    // public void deleteCart(@PathVariable("cartId") Long cartId){
+    //     cartService.deleteCart(cartId);
+    // }
     @GetMapping("getAll")
-    public List<Cart> getAll(){
+    public List<Cart> getAllCarts(){
         return cartService.getCarts();
     }
 
     @PostMapping("addCart")
-    public void addCart(@RequestBody Cart cart){
+    public ResponseEntity<String> addCart(@RequestBody Cart cart){
         cartService.addCart(cart);
+        return ResponseEntity.ok("Cart added successfuly");
     }
 
-    @DeleteMapping(path = "{cartId}")
-    public void deleteCart(@PathVariable("cartId") Long cartId){
+    @DeleteMapping("{cartId}")
+    public ResponseEntity<String> deleteCart(@PathVariable Long cartId){
         cartService.deleteCart(cartId);
+        return ResponseEntity.ok("Cart deleted successfully");
     }
 }
