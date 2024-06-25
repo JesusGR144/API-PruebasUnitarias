@@ -3,6 +3,8 @@ package com.jjgr.store_demo.user;
 import java.util.List;
 import java.util.Optional;
 
+import com.jjgr.store_demo.exceptions.ApiRequestException;
+
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,6 +17,9 @@ public class UserService {
 
     // GET all
     public List<User> getUsers() {
+        if (userRepository.findAll().isEmpty()) {
+            throw new ApiRequestException("No users found");
+        }
         return userRepository.findAll();
     }
 
