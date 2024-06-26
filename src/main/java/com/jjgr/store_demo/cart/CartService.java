@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.jjgr.store_demo.exceptions.ApiRequestException;
+
 @Service
 public class CartService {
     private final CartRepository cartRepository;
@@ -15,7 +17,11 @@ public class CartService {
 
     //GET all
     public List<Cart> getCarts(){
-        return cartRepository.findAll();
+        List<Cart> carts = cartRepository.findAll();
+        if (carts.isEmpty()) {
+            throw new ApiRequestException("No carts found");
+        }
+        return carts;
     }
 
     //POST
@@ -32,7 +38,7 @@ public class CartService {
     public void deleteCart(Long id){
         boolean cartExists = cartRepository.existsById(id);
         if(!cartExists){
-            throw new IllegalStateException("Cart with id "+id+"does not exist");
+            throw new IllegalStateException("Cart with id "+ id +" does not exist");
         }
         cartRepository.deleteById(id);
     }
