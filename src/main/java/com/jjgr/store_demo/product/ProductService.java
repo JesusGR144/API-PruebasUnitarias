@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.jjgr.store_demo.exceptions.ApiRequestException;
+
 @Service
 public class ProductService {
     private final ProductRepository productRepository;
@@ -15,6 +17,9 @@ public class ProductService {
 
     //GET all
     public List<Product> getProducts(){
+        if (productRepository.findAll().isEmpty()) {
+            throw new ApiRequestException("No products found");
+        }
         return productRepository.findAll();
     }
 
